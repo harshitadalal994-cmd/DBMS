@@ -1,0 +1,34 @@
+CREATE DATABASE student_management;
+
+USE student_management;
+
+CREATE TABLE students (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    course VARCHAR(100),
+    semester INT
+);
+
+CREATE TABLE attendance (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT,
+    date DATE,
+    status VARCHAR(20),
+    FOREIGN KEY (student_id) REFERENCES students(id)
+);
+
+CREATE TABLE marks (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT,
+    subject VARCHAR(100),
+    marks DECIMAL(5,2),
+    FOREIGN KEY (student_id) REFERENCES students(id)
+);
+
+CREATE TABLE assignments (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(200),
+    description TEXT,
+    due_date DATE
+);
